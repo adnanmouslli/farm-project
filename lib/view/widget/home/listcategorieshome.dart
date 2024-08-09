@@ -1,6 +1,6 @@
 
 import 'package:farm/core/constant/imagasset.dart';
-import 'package:farm/data/model/EmployeesModel.dart';
+import 'package:farm/data/model/FarmModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -18,15 +18,15 @@ class ListEmployeesHome extends GetView<HomeControllerImp> {
       height: 120,
       child: ListView.separated(
         separatorBuilder: (context, index) => const SizedBox(width: 10),
-        itemCount: controller.employees.length ,
+        itemCount: controller.farms.length ,
         scrollDirection: Axis.horizontal ,
         itemBuilder: (context, index) {
 
           return
-            Employees(
+            Farms(
               i: index,
-              employeesModel:
-              EmployeesModel.fromJson(controller.employees[index]),
+              farmModel:
+              FarmModel.fromJson(controller.farms[index]),
           );
 
         },
@@ -35,10 +35,11 @@ class ListEmployeesHome extends GetView<HomeControllerImp> {
   }
 }
 
-class Employees extends GetView<HomeControllerImp> {
-  final   EmployeesModel employeesModel;
+class Farms extends GetView<HomeControllerImp> {
+
+  final   FarmModel farmModel;
   final int? i;
-  const Employees({Key? key, required this.employeesModel, required this.i})
+  const Farms({Key? key, required this.farmModel, required this.i})
       : super(key: key);
 
   @override
@@ -46,7 +47,7 @@ class Employees extends GetView<HomeControllerImp> {
     return InkWell(
       borderRadius: BorderRadius.circular(30),
       onTap: () {
-        controller.goToPageProductDetails(employeesModel) ;
+        controller.goToPageFarmDetails(farmModel) ;
         //controller.goToItems(controller.categories, i! , categoriesModel.categoriesId!);
       },
       child: Column(
@@ -63,14 +64,14 @@ class Employees extends GetView<HomeControllerImp> {
            // padding: const EdgeInsets.symmetric(horizontal: 10),
             height: 80,
             width: 80,
-            child: Hero(tag: '${employeesModel.idEmp}E' ,
-            child: Image.asset("${AppImageAsset.rootImages}/${employeesModel.urlImage}" , fit: BoxFit.cover,)) ,
+            child: Hero(tag: '${farmModel.id}E' ,
+            child: Image.asset("${AppImageAsset.rootImages}/${farmModel.urlImage}" , fit: BoxFit.cover,)) ,
 
              // SvgPicture.asset( AppImageAsset.logo ,
              //     "${AppLink.imagestCategories}/${categoriesModel.categoriesImage}",
              //    color: AppColor.primarySecandColor),
            ),
-          Text( "${employeesModel.nameEmp}" ,
+          Text( "${farmModel.name}" ,
             //"${translateDatabase(categoriesModel.categoriesNamaAr, categoriesModel.categoriesName)}",
             style: const TextStyle(fontSize: 13, color: AppColor.black),
           )

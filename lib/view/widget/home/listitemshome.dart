@@ -22,14 +22,14 @@ class ListServicesHome extends GetView<HomeControllerImp> {
       height: 140,
       child: ListView.separated(
           separatorBuilder: (context, index) => const SizedBox(width: 10),
-          itemCount: flag == 0 ? controller.services.length : controller.offerServices.length,
+          itemCount: flag == 0 ? controller.farms.length : controller.offerServices.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, i) {
             return ServicesHome(
-                servicesModel: ServicesModel.fromJson(flag == 0?controller.services[i]:controller.offerServices[i]),
+                servicesModel: ServicesModel.fromJson(flag == 0?controller.farms[i]:controller.offerServices[i]),
                 flag: flag,
                 onTap: () {
-                  controllerImp.goToServicesDetails(ServicesModel.fromJson(flag == 0?controller.services[i]:controller.offerServices[i]) , flag);
+                  controllerImp.goToServicesDetails(ServicesModel.fromJson(flag == 0?controller.farms[i]:controller.offerServices[i]) , flag);
 
                 },);
           }),

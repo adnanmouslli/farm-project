@@ -28,20 +28,24 @@ class HomeControllerImp extends HomeController {
   HomeData homedata = HomeData(Get.find());
 
   // List data = [];
-  List employees = [] ;
-  List services = [] ;
+  List farms = [] ;
+  List imageFarms = [] ;
+
   List offerServices = [] ;
+
+
 
 
   bool isAdmin = false ;
 
 
-
-
   @override
   initialData() {
-  String? state = myServices.sharedPreferences.getString("type");
-  if(state == "admin") isAdmin =true ;
+
+
+  String? state = myServices.sharedPreferences.getString("isAdmin");
+  if(state == "1") isAdmin =true ;
+
 
   }
 
@@ -64,16 +68,16 @@ class HomeControllerImp extends HomeController {
 
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        employees.addAll(response['data1']);
-        services.addAll(response['data2']);
+        farms.addAll(response['data1']);
+        imageFarms.addAll(response['data2']);
 
-        for(int i = 0 ; i < services.length ; i++){
-          if(services[i]['offer'] == 1){
-            offerServices.add(services[i]);
-          }
-        }
+        // for(int i = 0 ; i < services.length ; i++){
+        //   if(services[i]['offer'] == 1){
+        //     offerServices.add(services[i]);
+        //   }
+        // }
 
-        print(services);
+
        // services.addAll(response['services']['data']);
       } else {
         statusRequest = StatusRequest.failure;
@@ -91,12 +95,12 @@ class HomeControllerImp extends HomeController {
     });
   }
 
-  goToPageProductDetails(employeesModel) {
-    Get.toNamed(AppRoute.EmployeeDetails,
+  goToPageFarmDetails(farmModel) {
+    Get.toNamed(AppRoute.FarmDetails,
         arguments:
         {
-          "employeesModel": employeesModel ,
-          "services" : services
+          "farmModel": farmModel,
+          "imageFarms" : imageFarms
         });
   }
 

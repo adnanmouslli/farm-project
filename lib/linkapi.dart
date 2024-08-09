@@ -1,6 +1,6 @@
 class AppLink {
 
-  static const String server = "http://10.0.2.2/salonApp";
+  static const String server = "http://10.0.2.2/farm";
 
   static const String test = "$server/test.php";
 
@@ -8,7 +8,6 @@ class AppLink {
   // ========================== auth ======================//
   static const String signUp = "$server/auth/signup.php";
   static const String login = "$server/auth/login.php";
-
 
 
   // ============================== profile ================================== //
@@ -33,10 +32,6 @@ class AppLink {
 
 
   static const String get_Works = "$server/manager/get_works.php" ;
-
-
-
-
 
 
   // ================================ notification =============================//

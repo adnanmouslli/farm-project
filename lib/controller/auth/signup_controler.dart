@@ -26,7 +26,6 @@ class SignUpControlerImp extends SignUpControler {
   late TextEditingController password ;
   late TextEditingController phone ;
   late TextEditingController username ;
-  late TextEditingController address ;
   MyServices myServices = Get.find() ;
 
 
@@ -44,7 +43,7 @@ class SignUpControlerImp extends SignUpControler {
       try {
         statusRequest = StatusRequest.loading;
         update();
-        var response = await signUpData.postData(username.text, password.text, email.text, phone.text, address.text);
+        var response = await signUpData.postData(username.text, password.text, email.text, phone.text);
         print("=============================== Controller $response ") ;
         statusRequest = handlingData(response);
         if (StatusRequest.success == statusRequest) {
@@ -94,7 +93,6 @@ class SignUpControlerImp extends SignUpControler {
     password = TextEditingController();
     phone = TextEditingController();
     username = TextEditingController();
-    address = TextEditingController();
     super.onInit();
   }
   @override
@@ -103,7 +101,6 @@ class SignUpControlerImp extends SignUpControler {
     password.dispose();
     phone.dispose();
     username.dispose();
-    address.dispose();
     super.dispose();
   }
 

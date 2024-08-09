@@ -29,7 +29,7 @@ class Favorite_controllerImp extends Favorite_controller {
   @override
   goToDetails(String id , String imageurl, String des  ,String itemName , int price) {
 
-    Get.toNamed(AppRoute.EmployeeDetails ,
+    Get.toNamed(AppRoute.FarmDetails ,
         arguments: {
           "itemId" : id ,
           "imageUrl" : imageurl ,

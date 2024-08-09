@@ -16,7 +16,6 @@ abstract class LoginControler extends GetxController {
 
   login(BuildContext context) ;
   goToSignUp();
-  goToForgetPassword();
   getAllData() ;
   getUserData();
 
@@ -62,12 +61,12 @@ class LoginControlerImp extends LoginControler {
             if (StatusRequest.success == statusRequest) {
               if(response['status'] == "success")
               {
-                myServices.sharedPreferences.setInt("user_id", response['data']['user_id']) ;
+                myServices.sharedPreferences.setInt("user_id", response['data']['id']) ;
                 myServices.sharedPreferences.setString("username", response['data']['username']) ;
                 myServices.sharedPreferences.setString("email", response['data']['email']) ;
                 myServices.sharedPreferences.setInt("phone", response['data']['phone']) ;
                 myServices.sharedPreferences.setString("password", response['data']['password']) ;
-                myServices.sharedPreferences.setString("type", response['data']['type']) ;
+                myServices.sharedPreferences.setString("isAdmin", response['data']['isAdmin']) ;
 
                 myServices.sharedPreferences.setString("step", "2") ;
 

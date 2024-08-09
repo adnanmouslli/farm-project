@@ -30,7 +30,7 @@ class Home_page extends GetView<HomeControllerImp> {
               children: [
                 CustomAppBar(
                   mycontroller: controller.search!,
-                  titleappbar: "Find Service",
+                  titleappbar: "Find Farm",
                   // onPressedIcon: () {},
                   onPressedSearch: () {
                     controller.onSearchItems();
@@ -41,7 +41,7 @@ class Home_page extends GetView<HomeControllerImp> {
                    onPressedIcon: () {
                     controller.goToManager();
                    }, isAdmin: controller.isAdmin,
-                  
+
                 ),
                 HandlingDataView(
                     statusRequest: controller.statusRequest,
@@ -52,12 +52,12 @@ class Home_page extends GetView<HomeControllerImp> {
                         CustomCardHome(
                             title: "A summer surprise",
                             body: "Cashback 20%"),
-                        CustomTitleHome(title: "employees"),
+                        CustomTitleHome(title: "Farms"),
                         ListEmployeesHome(),
                         CustomTitleHome(title: "Services"),
-                        ListServicesHome(flag: 0,),
+                        // ListServicesHome(flag: 0,),
                         CustomTitleHome(title: "Offers"),
-                        ListServicesHome(flag: 1,),
+                        // ListServicesHome(flag: 1,),
                         SizedBox(height: 20,)
                       ],
                     )
@@ -111,11 +111,8 @@ class ListItemsSearch extends GetView<HomeControllerImp> {
                       //     '${data['id_document']}'
                       // );
                     },
-
                   )
-
               );
-
           }),
 
 

@@ -3,11 +3,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/employeesdetails_controller.dart';
+import '../../../controller/farmdetails_controller.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/constant/imagasset.dart';
 
-class TopProductPageDetails extends GetView<EmployeesDetailsControllerImp> {
+class TopProductPageDetails extends GetView<FarmDetailsControllerImp> {
 
   final String ImageUrl ;
   final String itemId ;

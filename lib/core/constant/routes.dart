@@ -11,7 +11,7 @@ class AppRoute {
   static const String verfiyCodeSignUp = "/verfiycodesignup";
   static const String homePage = "/HomePage";
   static const String items = "/services";
-  static const String EmployeeDetails = "/EmployeeDetails";
+  static const String FarmDetails = "/FarmDetails";
   static const String favorite = "/favorite";
   static const String LocalAndWebObjectsWidget = "/LocalAndWebObjectsWidget";
   static const String Cart = "/Cart";

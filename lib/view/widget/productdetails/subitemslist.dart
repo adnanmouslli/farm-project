@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../controller/employeesdetails_controller.dart';
+import '../../../controller/farmdetails_controller.dart';
 import '../../../core/constant/color.dart';
 
-class SubitemsList extends GetView<EmployeesDetailsControllerImp> {
+class SubitemsList extends GetView<FarmDetailsControllerImp> {
   const SubitemsList({Key? key}) : super(key: key);
 
   @override

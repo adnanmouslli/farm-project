@@ -104,22 +104,6 @@ class SignUp extends StatelessWidget {
 
                   SizedBox(height: 30),
 
-                  CustomTextFormAuth(
-                    isnumber: false,
-                    valid: (val){
-
-                      return validInput(val! , 5 , 30 ,"address" );
-
-                    },
-                    mycontroller: controller.address,
-                    hinttext: "Enter Your address",
-                    iconData: Icons.location_on_outlined,
-                    labeltext: "address",
-                    // mycontroller: ,
-                  ),
-
-                  SizedBox(height: 30),
-
                   CustomButtomAuth(text: "Sign Up",onPressed: () async{
                     await controller.signUp(context);
 
@@ -132,8 +116,6 @@ class SignUp extends StatelessWidget {
                 ]),
               ),
             ) )
-
-
 
           )
       ),

@@ -2,21 +2,18 @@
 import 'package:farm/core/constant/routes.dart';
 import 'package:farm/data/datatsource/remote/home/home_data.dart';
 import 'package:farm/data/model/EmployeesModel.dart';
+import 'package:farm/data/model/FarmModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../core/class/statusrequest.dart';
 import '../core/services/services.dart';
 
-abstract class EmployeesDetailsController extends GetxController {
 
-
-}
-
-class EmployeesDetailsControllerImp extends EmployeesDetailsController {
+class FarmDetailsControllerImp extends GetxController{
   // CartController cartController = Get.put(CartController());
 
-  late EmployeesModel employeesModel;
+  late FarmModel farmModel;
 
   HomeData homeData = HomeData(Get.find());
 
@@ -26,15 +23,23 @@ class EmployeesDetailsControllerImp extends EmployeesDetailsController {
 
   int countitems = 5;
 
-  List services = [] ;
+  List imageFarms = [] ;
+
+  List myImage = [] ;
 
 
   intialData() async {
     statusRequest = StatusRequest.loading;
-    employeesModel = Get.arguments['employeesModel'];
-    services = Get.arguments['services'] ;
+    farmModel = Get.arguments['farmModel'];
+    imageFarms = Get.arguments['imageFarms'] ;
 
-    print(employeesModel.idEmp) ;
+    for(int i = 0 ; i < imageFarms.length ; i++){
+      if(imageFarms[i]['id_farm'] == farmModel.id)
+        myImage.add(imageFarms[i]);
+    }
+
+    print("farm id = ");
+    print(farmModel.id);
     //countitems = await getCountItems(itemsModel.itemsId!);
     statusRequest = StatusRequest.success;
     update();
@@ -43,11 +48,10 @@ class EmployeesDetailsControllerImp extends EmployeesDetailsController {
   viewServices(){
     Get.toNamed(AppRoute.items , arguments:
     {
-      "employeesModel": employeesModel ,
-      "services" : services
+      "farmModel": farmModel ,
+      "imageFarms" : imageFarms
     }
     ) ;
-
   }
 
 

@@ -7,7 +7,7 @@ import 'package:farm/view/screen/booking/CancelBooking.dart';
 import 'package:farm/view/screen/booking/ConfirmBooking.dart';
 import 'package:farm/view/screen/booking/bookingServices.dart';
 import 'package:farm/view/screen/home/homescreen.dart';
-import 'package:farm/view/screen/employeesdetails.dart';
+import 'package:farm/view/screen/farmdetails.dart';
 import 'package:farm/view/screen/services/services.dart';
 import 'package:farm/view/screen/services/servicesdetails.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -32,7 +32,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.onBoarding, page: () => const OnBoarding()),
   GetPage(name: AppRoute.homePage, page: () =>  HomeScreen()),
   GetPage(name: AppRoute.items, page: () => const Services()),
-  GetPage(name: AppRoute.EmployeeDetails, page: () => const EmployeeDetails()),
+  GetPage(name: AppRoute.FarmDetails, page: () => const FarmDetails()),
 
   ////////////////////////////////////////////////
   GetPage(name: AppRoute.ServicesDetails, page: () => const ServicesDetails()),
