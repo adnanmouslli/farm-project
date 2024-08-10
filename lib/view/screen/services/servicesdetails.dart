@@ -8,7 +8,6 @@ import '../../../core/class/handlingdataview.dart';
 import '../../../core/constant/color.dart';
 import '../../../core/constant/routes.dart';
 import '../../widget/productdetails/priceandcount.dart';
-import '../../widget/productdetails/subitemslist.dart';
 import '../../widget/productdetails/toppageproductdetails.dart';
 
 class ServicesDetails extends StatelessWidget {

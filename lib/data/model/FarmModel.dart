@@ -7,6 +7,7 @@ class FarmModel {
   String? password;
   String? status;
   String? urlImage;
+  int? price ;
 
   FarmModel(
       {this.id,
@@ -16,7 +17,8 @@ class FarmModel {
         this.description,
         this.password,
         this.status,
-        this.urlImage
+        this.urlImage ,
+        this.price
         });
 
   FarmModel.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class FarmModel {
     password = json['password'];
     status = json['status'];
     urlImage = json['urlImage'];
+    price = json['price'];
   }
 
   Map<String, dynamic> toJson() {
@@ -40,6 +43,7 @@ class FarmModel {
     data['password'] = this.password;
     data['status'] = this.status;
     data['urlImage'] = this.urlImage;
+    data['price'] = this.price;
     return data;
   }
 }

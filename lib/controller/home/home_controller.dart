@@ -1,4 +1,6 @@
+import 'package:farm/data/model/FarmModel.dart';
 import 'package:farm/data/model/ServicesModel.dart';
+import 'package:farm/view/screen/home/HomePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -30,8 +32,9 @@ class HomeControllerImp extends HomeController {
   // List data = [];
   List farms = [] ;
   List imageFarms = [] ;
+  List top3Farms = [] ;
 
-  List offerServices = [] ;
+  List offerFarm = [] ;
 
 
 
@@ -70,15 +73,9 @@ class HomeControllerImp extends HomeController {
       if (response['status'] == "success") {
         farms.addAll(response['data1']);
         imageFarms.addAll(response['data2']);
+        offerFarm.addAll(response['data3']);
+        top3Farms.addAll(response['data4']);
 
-        // for(int i = 0 ; i < services.length ; i++){
-        //   if(services[i]['offer'] == 1){
-        //     offerServices.add(services[i]);
-        //   }
-        // }
-
-
-       // services.addAll(response['services']['data']);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -95,12 +92,13 @@ class HomeControllerImp extends HomeController {
     });
   }
 
-  goToPageFarmDetails(farmModel) {
+  goToPageFarmDetails(FarmModel farmModel , bool flag) {
     Get.toNamed(AppRoute.FarmDetails,
         arguments:
         {
           "farmModel": farmModel,
-          "imageFarms" : imageFarms
+          "imageFarms" : imageFarms,
+          "flag" : flag
         });
   }
 

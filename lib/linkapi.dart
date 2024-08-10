@@ -43,6 +43,13 @@ class AppLink {
 
 
 
+  /////////////////////////////////// farm //////////////////////////////////////////
+
+  static const String addRate = "$server/rateFarm/addRate.php" ;
+  static const String getRate = "$server/rateFarm/getRate.php" ;
+
+
+
 
 
 

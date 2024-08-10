@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:farm/data/model/FarmModel.dart';
+import 'package:farm/view/widget/home/ListTop3FarmHome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -11,7 +13,7 @@ import '../../../data/model/ServicesModel.dart';
 import '../../widget/home/customappbar.dart';
 import '../../widget/home/customcardhome.dart';
 import '../../widget/home/customtitlehome.dart';
-import '../../widget/home/listcategorieshome.dart';
+import '../../widget/home/ListFarmHome.dart';
 import '../../widget/home/listitemshome.dart';
 import '../../widget/items/CustomItem.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -53,11 +55,15 @@ class Home_page extends GetView<HomeControllerImp> {
                             title: "A summer surprise",
                             body: "Cashback 20%"),
                         CustomTitleHome(title: "Farms"),
-                        ListEmployeesHome(),
-                        CustomTitleHome(title: "Services"),
-                        // ListServicesHome(flag: 0,),
+                        ListFarmHome(),
+                        CustomTitleHome(title: "Top 3 farms"),
+                        ListTop3FarmHome(),
                         CustomTitleHome(title: "Offers"),
-                        // ListServicesHome(flag: 1,),
+                        ListOffersHome(),
+
+
+
+
                         SizedBox(height: 20,)
                       ],
                     )
@@ -67,8 +73,6 @@ class Home_page extends GetView<HomeControllerImp> {
                //  const ListItemsHome()
               ],
             )));
-
-
 
     }
 }
@@ -91,18 +95,18 @@ class ListItemsSearch extends GetView<HomeControllerImp> {
           const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, childAspectRatio: 0.7),
           itemBuilder: (BuildContext context, index) {
-            ServicesModel servicesModel = ServicesModel.fromJson(listdata[index]);
-
+            // ServicesModel servicesModel = ServicesModel.fromJson(listdata[index]);
+            FarmModel farmModel = FarmModel.fromJson(listdata[index]) ;
             return
               InkWell(
                   onTap: () {
-                    controller.goToDetails(servicesModel) ;
+                    controller.goToPageFarmDetails(farmModel , false) ;
                   },
                   child: CustomListItems(
                     ImageUrl: AppImageAsset.logo,
-                    price: servicesModel.priceSer!,
-                    desc: servicesModel.nameSer!,
-                    tag: servicesModel.idSer!,
+                    price: farmModel.price!,
+                    desc: farmModel.name!,
+                    tag: farmModel.id!,
                     active: '0',
                     action: () {
                       // controller.favorite(
@@ -114,11 +118,6 @@ class ListItemsSearch extends GetView<HomeControllerImp> {
                   )
               );
           }),
-
-
     );
   }
 }
-
-
-

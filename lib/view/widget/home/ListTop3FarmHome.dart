@@ -9,16 +9,16 @@ import '../../../controller/home/home_controller.dart';
 import '../../../core/constant/color.dart';
 import '../../../linkapi.dart';
 
-class ListEmployeesHome extends GetView<HomeControllerImp> {
-  const ListEmployeesHome({Key? key}) : super(key: key);
+class ListTop3FarmHome extends GetView<HomeControllerImp> {
+  const ListTop3FarmHome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 120,
+      height: 200,
       child: ListView.separated(
         separatorBuilder: (context, index) => const SizedBox(width: 10),
-        itemCount: controller.farms.length ,
+        itemCount: controller.top3Farms.length ,
         scrollDirection: Axis.horizontal ,
         itemBuilder: (context, index) {
 
@@ -26,7 +26,7 @@ class ListEmployeesHome extends GetView<HomeControllerImp> {
             Farms(
               i: index,
               farmModel:
-              FarmModel.fromJson(controller.farms[index]),
+              FarmModel.fromJson(controller.top3Farms[index]),
           );
 
         },
@@ -44,10 +44,14 @@ class Farms extends GetView<HomeControllerImp> {
 
   @override
   Widget build(BuildContext context) {
+
+    const String baseUrl = AppLink.server;
+
     return InkWell(
       borderRadius: BorderRadius.circular(30),
       onTap: () {
-        controller.goToPageFarmDetails(farmModel) ;
+        print(farmModel) ;
+        controller.goToPageFarmDetails(farmModel , true) ;
         //controller.goToItems(controller.categories, i! , categoriesModel.categoriesId!);
       },
       child: Column(
@@ -62,10 +66,16 @@ class Farms extends GetView<HomeControllerImp> {
 
                 ),
            // padding: const EdgeInsets.symmetric(horizontal: 10),
-            height: 80,
-            width: 80,
-            child: Hero(tag: '${farmModel.id}E' ,
-            child: Image.asset("${AppImageAsset.rootImages}/${farmModel.urlImage}" , fit: BoxFit.cover,)) ,
+            height: 150,
+            width: 150,
+            child: Hero(tag: '${farmModel.id}T' ,
+            child:
+            Image.network(
+              "$baseUrl/upload/${farmModel.urlImage}",
+              fit: BoxFit.cover,
+            )),
+
+            //Image.asset("${AppImageAsset.rootImages}/${farmModel.urlImage}" , fit: BoxFit.cover,)) ,
 
              // SvgPicture.asset( AppImageAsset.logo ,
              //     "${AppLink.imagestCategories}/${categoriesModel.categoriesImage}",

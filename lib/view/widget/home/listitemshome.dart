@@ -1,5 +1,7 @@
 
 import 'package:farm/data/model/EmployeesModel.dart';
+import 'package:farm/data/model/FarmModel.dart';
+import 'package:farm/data/model/OfferModel.dart';
 import 'package:farm/data/model/ServicesModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,80 +11,167 @@ import '../../../core/constant/color.dart';
 import '../../../core/constant/imagasset.dart';
 import '../../../linkapi.dart';
 
-class ListServicesHome extends GetView<HomeControllerImp> {
+class ListOffersHome extends GetView<HomeControllerImp> {
 
-  final int flag ;
 
-  const ListServicesHome( {Key? key , required this.flag}) : super(key: key);
+
+  const ListOffersHome( {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     HomeControllerImp controllerImp = Get.put(HomeControllerImp());
     return SizedBox(
-      height: 140,
+      height: 260,
       child: ListView.separated(
           separatorBuilder: (context, index) => const SizedBox(width: 10),
-          itemCount: flag == 0 ? controller.farms.length : controller.offerServices.length,
+          itemCount: controllerImp.offerFarm.length ,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, i) {
-            return ServicesHome(
-                servicesModel: ServicesModel.fromJson(flag == 0?controller.farms[i]:controller.offerServices[i]),
-                flag: flag,
-                onTap: () {
-                  controllerImp.goToServicesDetails(ServicesModel.fromJson(flag == 0?controller.farms[i]:controller.offerServices[i]) , flag);
 
-                },);
+            OfferModel offerModel = OfferModel.fromJson(controller.offerFarm[i]);
+            late FarmModel farmModel ;
+            for(int j =0  ;j < controllerImp.farms.length ; j++){
+              if(controllerImp.farms[j]['id'] == offerModel.idFarm){
+                farmModel = FarmModel.fromJson(controllerImp.farms[j]);
+                break ;
+              }
+            }
+
+            return OfferFarms(
+                 offerModel: offerModel,
+                 onTap: () {
+                    controller.goToPageFarmDetails(farmModel , false);
+                  },
+
+            );
           }),
     );
   }
 }
 
-class ServicesHome extends StatelessWidget {
-  final ServicesModel servicesModel;
-  final flag ;
+
+
+
+class OfferFarms extends StatelessWidget {
+  final OfferModel offerModel;
+
   final void Function()? onTap ;
-   ServicesHome({Key? key,required this.flag , required this.servicesModel , required this.onTap}) : super(key: key);
+   OfferFarms({Key? key, required this.offerModel , required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 200,
-      height: 40,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(20),
-        onTap: onTap ,
-        child:
-        Stack(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              child: Hero(tag: flag == 0 ? '${servicesModel.idSer}S' : '${servicesModel.idSer}SS' ,
-              child: Image.asset("${AppImageAsset.rootImages}/${servicesModel.urlImage}" ,height: 100,width: 150, fit: BoxFit.fill,)
-
-              ),
-            ),
-
-            Container(
-              decoration: BoxDecoration(
-                  color: AppColor.black.withOpacity(0.3),
-                  borderRadius: BorderRadius.circular(20)),
-              height: 120,
-              width: 200,
-            ),
-            Positioned(
-                left: 10,
-                child: Text(
-                  "${servicesModel.nameSer}",
-                  style: const TextStyle(
-                      color: Colors.white,
-                       fontWeight: FontWeight.bold,
-                      fontSize: 14),
-                )
-            )
-          ],
+    return
+      Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
         ),
-      ),
-    );
+        elevation: 5,
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              Row(children: [
+                // اسم المزرعة
+                Text(
+                  offerModel.name!,
+                  style: Theme.of(context).textTheme.headline6!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green[700],
+                    fontSize: 16, // تعديل حجم الخط
+                  ),
+                ),
+
+
+              ],) ,
+
+              const SizedBox(height: 10),
+              // وصف العرض
+              Text(
+                offerModel.description!,
+                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  color: Colors.grey[700],
+                  fontSize: 14, // تعديل حجم الخط
+                ),
+              ),
+              const SizedBox(height: 10),
+              // عرض السعر القديم والجديد
+              Row(
+                children: [
+                  Text(
+                    'Old Price: ',
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      fontSize: 14, // تعديل حجم الخط
+                    ),
+                  ),
+                  Text(
+                    '\$${offerModel.price}', // السعر القديم
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                      color: Colors.red, // لون أحمر للسعر القديم
+                      decoration: TextDecoration.lineThrough, // خط يتوسط السعر القديم
+                      fontSize: 14, // تعديل حجم الخط
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    'New Price: ',
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      fontSize: 14, // تعديل حجم الخط
+                    ),
+                  ),
+                  Text(
+                    '\$${offerModel.offerValue}', // السعر الجديد
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                      color: Colors.green, // لون أخضر للسعر الجديد
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14, // تعديل حجم الخط
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              // أيام العرض
+              Row(
+                children: [
+                  const Icon(
+                    Icons.calendar_today,
+                    color: Colors.blueAccent,
+                    size: 18,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    offerModel.offerDay!,
+                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      color: Colors.blueAccent,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14, // تعديل حجم الخط
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 15),
+              // زر عرض التفاصيل
+             Container(
+                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                 height: 30,
+                 child: MaterialButton(
+                     shape: RoundedRectangleBorder(
+                         borderRadius: BorderRadius.circular(10)),
+                     color: AppColor.primarySecandColor,
+                     onPressed: onTap,
+                     child: const Text(
+                       "view farm",
+                       style: TextStyle(
+                           color: Colors.white, fontWeight: FontWeight.bold),
+                     )))
+
+            ],
+          ),
+        ),
+      );
+
   }
 }
