@@ -26,7 +26,7 @@ class BookingData {
 
   ///////////////// manager ///////////////////
   getPendingBooking() async {
-    var response = await crud.postData(AppLink.get_pending_booking, {});
+    var response = await crud.postData(AppLink.get_pending_farms, {});
     return response.fold((l) => l, (r) => r);
   }
 

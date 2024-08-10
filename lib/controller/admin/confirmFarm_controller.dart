@@ -1,5 +1,7 @@
+import 'package:farm/data/datatsource/remote/admin/admin_data.dart';
 import 'package:farm/data/datatsource/remote/booking/booking_data.dart';
 import 'package:farm/data/model/BookingModel.dart';
+import 'package:farm/data/model/FarmModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../core/class/statusrequest.dart';
@@ -8,29 +10,27 @@ import '../../core/services/services.dart';
 
 
 
-class ConfirmBookingController extends GetxController {
+class ConfirmFarmController extends GetxController {
 
   late StatusRequest statusRequest = StatusRequest.none;
 
-  BookingData bookingData = BookingData(Get.find()) ;
+  AdminData adminData = AdminData(Get.find()) ;
 
   MyServices myServices = Get.find();
-  List pendingBookings = [] ;
+  List pendingFarms = [] ;
   late int user_id ;
-  late String username;
-  late String email;
-  late int phone;
-
-
+  late String username ;
+  late String email ;
+  late int phone ;
 
   getData() async {
     statusRequest = StatusRequest.loading;
-    var response = await bookingData.getPendingBooking();
+    var response = await adminData.getFarms();
     print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        pendingBookings.addAll(response['data']);
+        pendingFarms.addAll(response['data']);
       } else {
         statusRequest = StatusRequest.failure;
       }
@@ -39,12 +39,12 @@ class ConfirmBookingController extends GetxController {
     update();
   }
 
-  confirmBooking(int index) async {
-    SportBooking sportBooking = SportBooking.fromJson(pendingBookings[index]);
-    var response = await bookingData.updateStatus(sportBooking.idSer!, sportBooking.idU!) ;
+  confirmFarm(int index) async {
+    FarmModel farmModel = FarmModel.fromJson(pendingFarms[index]);
+    var response = await adminData.updateStatus(farmModel.id!.toString()) ;
     if(response['status'] == "success")
     {
-      pendingBookings.removeAt(index);
+      pendingFarms.removeAt(index);
       update();
       Get.snackbar(
         'الحجوزات',
@@ -56,23 +56,21 @@ class ConfirmBookingController extends GetxController {
         snackPosition: SnackPosition.BOTTOM, // Set the position to bottom
       );
     }
-
   }
 
-
-  deleteBooking(int index)
+  deleteFarm(int index)
   async {
-    SportBooking sportBooking = SportBooking.fromJson(pendingBookings[index]);
+    FarmModel farmModel = FarmModel.fromJson(pendingFarms[index]);
 
-    var response = await bookingData.deleteData(sportBooking.idSer!, sportBooking.idU!) ;
+    var response = await adminData.deleteFarme(farmModel.id!.toString()) ;
 
     if(response['status'] == "success")
       {
-        pendingBookings.removeAt(index);
+        pendingFarms.removeAt(index);
         update();
         Get.snackbar(
-          'الحجوزات',
-          'تم حذف الموعد بنجاح',
+          'manager',
+          'farm delete',
           duration: Duration(seconds: 3), // Set the duration to 3 seconds
           backgroundColor: Colors.green, // Set the background color to green
           colorText: Colors.white, // Set the text color to white

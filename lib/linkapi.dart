@@ -26,9 +26,6 @@ class AppLink {
   static const String get_user_booking = "$server/booking/get_user_booking.php" ;
   static const String deleteBooking = "$server/booking/delete_booking.php" ;
 
-  // ================================ manager ==================================//
-  static const String get_pending_booking = "$server/manager/get_pending_booking.php" ;
-  static const String updateStatus = "$server/manager/updateStatus.php" ;
 
 
   static const String get_Works = "$server/manager/get_works.php" ;
@@ -49,9 +46,12 @@ class AppLink {
   static const String getRate = "$server/rateFarm/getRate.php" ;
 
 
+  ///////////////////////////////// admin ///////////////////////////////////////////
 
+  static const String get_pending_farms = "$server/manager/get_pending_farms.php" ;
 
+  static const String delete_farm = "$server/manager/delete_farm.php" ;
 
-
+  static const String updateStatus = "$server/manager/updateStatus.php" ;
 
 }

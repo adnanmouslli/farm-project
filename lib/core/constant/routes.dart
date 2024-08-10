@@ -22,7 +22,8 @@ class AppRoute {
   static const String ServicesDetails = "/ServicesDetails";
   static const String BookingServices = "/BookingServices";
   static const String CancelBooking = "/CancelBooking";
-  static const String ConfirmBooking = "/ConfirmBooking";
+
+  static const String ConfirmFarm = "/ConfirmFarm";
 
 
 

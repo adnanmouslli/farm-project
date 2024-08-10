@@ -112,8 +112,7 @@ class HomeControllerImp extends HomeController {
 
   @override
   goToManager() {
-    Get.toNamed(AppRoute.ConfirmBooking);
-
+    Get.toNamed(AppRoute.ConfirmFarm);
   }
 
   void goToDetails(ServicesModel servicesModel) {

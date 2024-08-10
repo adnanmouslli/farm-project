@@ -1,5 +1,6 @@
 import 'package:farm/test_view.dart';
 import 'package:farm/view/screen/OnBoarding.dart';
+import 'package:farm/view/screen/admin/ConfirmFarm.dart';
 
 import 'package:farm/view/screen/auth/signUp.dart';
 import 'package:farm/view/screen/auth/success_signup.dart';
@@ -38,7 +39,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.ServicesDetails, page: () => const ServicesDetails()),
   GetPage(name: AppRoute.BookingServices, page: () => const BookingServices()),
   GetPage(name: AppRoute.CancelBooking, page: () => const CancelBooking()),
-  GetPage(name: AppRoute.ConfirmBooking, page: () => const ConfirmBooking()),
+  GetPage(name: AppRoute.ConfirmFarm, page: () => const ConfirmFarm()),
 
 
 
