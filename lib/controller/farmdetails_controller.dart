@@ -17,8 +17,6 @@ import 'package:http/http.dart' as http;
 class FarmDetailsControllerImp extends GetxController{
   // CartController cartController = Get.put(CartController());
 
-  Crud crud = new Crud();
-
   late FarmModel farmModel;
     double rating = 0.0 ;
 
@@ -65,14 +63,7 @@ class FarmDetailsControllerImp extends GetxController{
 
   }
 
-  viewServices(){
-    Get.toNamed(AppRoute.items , arguments:
-    {
-      "farmModel": farmModel ,
-      "imageFarms" : imageFarms
-    }
-    );
-  }
+
 
   Future<void> addRate(String rate) async {
 
@@ -91,6 +82,14 @@ class FarmDetailsControllerImp extends GetxController{
     double rating = (res['data'] as num).toDouble(); // تحويل إلى double
     return rating;
 
+  }
+
+  goToBookingFarm(){
+    Get.toNamed(AppRoute.BookingFarm ,
+        arguments:
+        {
+         "farmModel" : farmModel
+        }) ;
   }
 
   @override

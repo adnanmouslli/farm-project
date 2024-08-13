@@ -8,6 +8,31 @@ class BookingData {
   BookingData(this.crud);
 
 
+  getBookingFarm(String id_farm) async {
+    var response = await crud.postData(AppLink.getBooking, {"id_farm" : id_farm});
+    return response.fold((l) => l, (r) => r);
+  }
+
+
+  addBookingFarm(String id_farm , String id_user , String booking){
+    var response = await crud.postData(AppLink.addBooking, {"id_farm" : id_farm});
+    return response.fold((l) => l, (r) => r);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ///////////////////
+
   getData(int idSer) async {
     var response = await crud.postData(AppLink.getBooking, {"idSer" : '$idSer'});
     return response.fold((l) => l, (r) => r);

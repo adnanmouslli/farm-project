@@ -7,6 +7,7 @@ import 'package:farm/view/screen/auth/success_signup.dart';
 import 'package:farm/view/screen/booking/CancelBooking.dart';
 import 'package:farm/view/screen/booking/ConfirmBooking.dart';
 import 'package:farm/view/screen/booking/bookingServices.dart';
+import 'package:farm/view/screen/bookingFarm/bookingFarm.dart';
 import 'package:farm/view/screen/home/homescreen.dart';
 import 'package:farm/view/screen/farmdetails.dart';
 import 'package:farm/view/screen/services/services.dart';
@@ -24,7 +25,7 @@ List<GetPage<dynamic>>? routes = [
   MyMiddleWare()
    ]),
 
- // GetPage(name: "/", page: () =>  const OnBoarding()) ,
+ // GetPage(name: "/", page: () =>   BookingScreen()) ,
 
 
   GetPage(name: AppRoute.login, page: () => const Login()),
@@ -40,14 +41,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.BookingServices, page: () => const BookingServices()),
   GetPage(name: AppRoute.CancelBooking, page: () => const CancelBooking()),
   GetPage(name: AppRoute.ConfirmFarm, page: () => const ConfirmFarm()),
-
-
-
-
-
-  GetPage(name: "/TestView", page: () => const TestView()),
-
-
+  GetPage(name: AppRoute.BookingFarm, page: () =>  BookingFarm()),
 
 
 

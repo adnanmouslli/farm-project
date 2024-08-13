@@ -34,10 +34,10 @@ class FarmDetails extends StatelessWidget {
                 ),
                 color: AppColor.primarySecandColor,
                 onPressed: () {
-
+                controllerImp.goToBookingFarm() ;
                 },
                 child: const Text(
-                  "View Services",
+                  "Farm Booking",
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

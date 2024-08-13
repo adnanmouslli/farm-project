@@ -1,27 +1,24 @@
-import 'package:booking_calendar/booking_calendar.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../core/class/statusrequest.dart';
-import '../core/functions/handingdatacontroller.dart';
-import '../data/datatsource/remote/test_data.dart';
+import 'package:flutter/material.dart';
 
-class Test extends GetxController {
+class BookingTestController extends GetxController {
+  // قائمة بالأيام المتاحة
+  var availableDays = <DateTime>[
+    DateTime.utc(2024, 8, 15),
+    DateTime.utc(2024, 8, 16),
+    DateTime.utc(2024, 8, 17),
+    DateTime.utc(2024, 8, 20),
+  ].obs;
 
+  var selectedDay = DateTime.now().obs;
+  var focusedDay = DateTime.now().obs;
 
-   late TextEditingController myController ;
-
-   List<String> list = [] ;
-
-  @override
-  void onInit() {
-    myController = TextEditingController();
-    super.onInit();
+  void onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    this.selectedDay.value = selectedDay;
+    this.focusedDay.value = focusedDay;
   }
 
-  addToList() {
-    print('object');
-    list.add(myController.text) ;
-    update() ;
+  bool isDayAvailable(DateTime day) {
+    return availableDays.contains(day);
   }
-
 }
