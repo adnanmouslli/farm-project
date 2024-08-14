@@ -4,8 +4,14 @@ import 'package:farm/data/model/FarmModel.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/services/services.dart';
+
 class BookingFarmController extends GetxController {
   late FarmModel farmModel;
+  String id_user = "";
+  MyServices myServices = Get.find();
+
+
   BookingData bookingData = BookingData(Get.find());
   var bookingFarm = <DateTime>[].obs;
 
@@ -46,26 +52,33 @@ class BookingFarmController extends GetxController {
   /// حفظ الأيام المختارة كحجز جديد
   saveBooking() async {
     var bookingDates = selectedDays.map((date) => date.toIso8601String()).toList();
-
+    var res ;
     for (var booking in bookingDates) {
 
-
+      res =  await bookingData.addBookingFarm(farmModel.id!.toString(), id_user, booking) ;
 
     }
     
-    // var res = await bookingData.bookDays(farmModel.id!.toString(), bookingDates);
-    // if (res['status'] == "success") {
-    //   Get.snackbar('تم الحجز', 'تم حجز الأيام بنجاح');
-    //   getDayBooking(); // تحديث الأيام المحجوزة بعد الحجز
-    // } else {
-    //   Get.snackbar('خطأ', 'حدث خطأ أثناء الحجز');
-    // }
+    if (res['status'] == "success") {
+      Get.snackbar('تم الحجز', 'تم حجز الأيام بنجاح');
+      getDayBooking(); // تحديث الأيام المحجوزة بعد الحجز
+    } else {
+      Get.snackbar('خطأ', 'حدث خطأ أثناء الحجز');
+    }
   }
 
+
+  @override
+  void refresh() {
+    // TODO: implement refresh
+    super.refresh();
+  }
   @override
   void onInit() {
     farmModel = Get.arguments['farmModel'];
+    id_user = myServices.sharedPreferences.getInt("user_id").toString() ;
     getDayBooking();
+    update() ;
     super.onInit();
   }
 }

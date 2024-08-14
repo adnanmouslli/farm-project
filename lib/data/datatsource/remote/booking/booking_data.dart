@@ -14,8 +14,13 @@ class BookingData {
   }
 
 
-  addBookingFarm(String id_farm , String id_user , String booking){
-    var response = await crud.postData(AppLink.addBooking, {"id_farm" : id_farm});
+  addBookingFarm(String id_farm , String id_user , String booking) async {
+    var response = await crud.postData(AppLink.addBooking,
+        {
+          "id_farm" : id_farm ,
+          "id_user" : id_user ,
+          "booking" : booking
+        });
     return response.fold((l) => l, (r) => r);
   }
 
