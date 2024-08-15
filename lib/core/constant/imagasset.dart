@@ -19,6 +19,10 @@ class AppImageAsset {
   static const String wrong   =  "$rootLottie/wrong.json";
   static const String NotData   =  "$rootLottie/notData.json";
   static const String Salon   =  "$rootLottie/salon.json";
+  static const String topOne   =  "$rootLottie/topOne.json";
+  static const String TopOne_2   =  "$rootLottie/TopOne_2.json";
+  static const String topOne_3   =  "$rootLottie/topOne_3.json";
+
 
 
 }

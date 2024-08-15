@@ -37,7 +37,7 @@ class about_as extends StatelessWidget {
             child: Center(
               child: Container(
                // height: 300,
-                child: Text("BeautySalon application to organize reservations and provide services to customers with ease and comfort.\n"
+                child: Text(""
                 , style: TextStyle(fontSize: 18 , color: Colors.black ,fontFamily: "GilroyHeavy"),),),
             ),
           ) ,
@@ -46,7 +46,7 @@ class about_as extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 // height: 300,
-                child: Text("created by : abd alrhman ghzawi and khalaf alhussein"
+                child: Text("created by : shaima"
                   , style: TextStyle(fontSize: 21 , color: AppColor.primaryColor ,fontFamily: "GilroyHeavy"),),),
             ),
           ),

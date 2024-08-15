@@ -24,7 +24,8 @@ class Home_page extends GetView<HomeControllerImp> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeControllerImp());
+
+   Get.put(HomeControllerImp());
     return GetBuilder<HomeControllerImp>(
         builder: (controller) => Container(
             padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -50,10 +51,8 @@ class Home_page extends GetView<HomeControllerImp> {
                     widget: !controller.isSearch
                         ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const  [
-                        CustomCardHome(
-                            title: "A summer surprise",
-                            body: "Cashback 20%"),
+                      children:   [
+                        CustomCardHome(),
                         CustomTitleHome(title: "Farms"),
                         ListFarmHome(),
                         CustomTitleHome(title: "Top 3 farms"),

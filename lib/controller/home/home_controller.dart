@@ -1,6 +1,7 @@
 import 'package:farm/data/model/FarmModel.dart';
 import 'package:farm/data/model/ServicesModel.dart';
 import 'package:farm/view/screen/home/HomePage.dart';
+import 'package:farm/view/widget/home/ListTop3FarmHome.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -33,6 +34,7 @@ class HomeControllerImp extends HomeController {
   List farms = [] ;
   List imageFarms = [] ;
   List top3Farms = [] ;
+  List top1Farm = [] ;
 
   List offerFarm = [] ;
 
@@ -75,6 +77,7 @@ class HomeControllerImp extends HomeController {
         imageFarms.addAll(response['data2']);
         offerFarm.addAll(response['data3']);
         top3Farms.addAll(response['data4']);
+        top1Farm.addAll(response['data5']);
 
       } else {
         statusRequest = StatusRequest.failure;

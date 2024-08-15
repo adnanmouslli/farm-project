@@ -19,7 +19,7 @@ class MyBookin extends StatelessWidget {
     return
       Scaffold(
         appBar: AppBar(
-          title: Text('salon works'),
+          title: Text('farm works'),
         ),
         body: GetBuilder<MyBookinControllerImp>(
           builder: (controller) =>
@@ -33,10 +33,7 @@ class MyBookin extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Image.asset("assets/image/" + controller.salonWorks[index]['urlImage'] ),
-                          ) ;
-
-
-
+                          );
                   },
                 ),
               ),
