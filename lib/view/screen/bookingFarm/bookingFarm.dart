@@ -30,7 +30,7 @@ class BookingFarm extends StatelessWidget {
          Column(
           children: [
             Obx(() => TableCalendar(
-              firstDay: DateTime.utc(2024, 1, 1),
+              firstDay: DateTime.now(),
               lastDay: DateTime.utc(2024, 12, 31),
               focusedDay: controller.focusedDay.value,
               selectedDayPredicate: (day) {

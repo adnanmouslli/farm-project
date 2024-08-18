@@ -43,18 +43,7 @@ class profile extends StatelessWidget {
                                     labeltext: "New Username",
                                     // mycontroller: ,
                                   ),
-                                  SizedBox(height: 15),
-                                  CustomTextFormAuth(
-                                    isnumber: false,
-                                    valid: (val) {
-                                      return validInput(val!, 5, 30, "address");
-                                    },
-                                    mycontroller: controller.Inputaddress,
-                                    hinttext: "Enter Your address",
-                                    iconData: Icons.location_on_outlined,
-                                    labeltext: "New Address",
-                                    // mycontroller: ,
-                                  ),
+
                                   SizedBox(height: 30),
                                   CustomTextFormAuth(
                                     isnumber: false,

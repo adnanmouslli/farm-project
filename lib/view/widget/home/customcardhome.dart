@@ -115,39 +115,7 @@ class CustomCardHome extends GetView<HomeControllerImp> {
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         )))
-                //
-                // // سعر الخدمة في المزرعة
-                // Row(
-                //   children: [
-                //     Icon(Icons.attach_money_outlined, color: AppColor.primaryfourthColor),
-                //     SizedBox(width: 10),
-                //     Text(
-                //       "${controller.top1Farm[0]['price'] ?? "No price available"}",
-                //       style: TextStyle(
-                //         color: AppColor.primaryfourthColor,
-                //         fontWeight: FontWeight.bold,
-                //         fontSize: 18,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // SizedBox(height: 10),
-                //
-                // // تقييم المزرعة
-                // Row(
-                //   children: [
-                //     Icon(Icons.star_rate_rounded, color: Colors.amber, size: 24),
-                //     SizedBox(width: 10),
-                //     Text(
-                //       "${4.5 ?? "No rating available"}",
-                //       style: TextStyle(
-                //         color: AppColor.primaryfourthColor,
-                //         fontWeight: FontWeight.bold,
-                //         fontSize: 18,
-                //       ),
-                //     ),
-                //   ],
-                // ),
+
               ],
             ),
           ),

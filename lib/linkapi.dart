@@ -2,13 +2,18 @@ class AppLink {
 
   static const String server = "http://10.0.2.2/farm";
   // static const String server = "http://192.168.1.4/farm";
+  // static const String server = "http://farm2024.free.nf/farm/";
 
   static const String test = "$server/test.php";
-
 
   // ========================== auth ======================//
   static const String signUp = "$server/auth/signup.php";
   static const String login = "$server/auth/login.php";
+  static const String farmSignUp = "$server/auth/farmSignup.php";
+  static const String loginFarm = "$server/auth/loginFarm.php";
+
+
+
 
 
   // ============================== profile ================================== //
@@ -24,10 +29,10 @@ class AppLink {
 
   static const String getBooking = "$server/booking/get_booking.php" ;
   static const String addBooking = "$server/booking/add_booking.php" ;
-
-
-
   static const String get_user_booking = "$server/booking/get_user_booking.php" ;
+
+
+
   static const String deleteBooking = "$server/booking/delete_booking.php" ;
 
 

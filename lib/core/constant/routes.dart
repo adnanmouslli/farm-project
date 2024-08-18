@@ -26,6 +26,11 @@ class AppRoute {
   static const String ConfirmFarm = "/ConfirmFarm";
 
   static const String BookingFarm = "/BookingFarm";
+  static const String farm_signup = "/farm_signup";
+  static const String farmOwnerHome = "/farmOwnerHome";
+
+
+
 
 
 

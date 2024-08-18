@@ -49,8 +49,8 @@ class BookingData {
   }
 
 
-  deleteData(int idSer , int idU) async {
-    var response = await crud.postData(AppLink.deleteBooking, {"idSer" : '$idSer' , "id_u" : '$idU'});
+  deleteData(int idSer , int idU , String date) async {
+    var response = await crud.postData(AppLink.deleteBooking, {"idSer" : '$idSer' , "id_u" : '$idU' , "date" : date });
     return response.fold((l) => l, (r) => r);
   }
 

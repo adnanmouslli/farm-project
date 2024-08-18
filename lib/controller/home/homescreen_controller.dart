@@ -26,7 +26,7 @@ class HomeScreenControllerImp extends HomeScreenController {
   List bottomappbar = [
     {"title": "home", "icon": Icons.home},
     {"title": "profile", "icon": Icons.person_pin_sharp},
-    {"title": "works", "icon": Icons.work_outline_sharp},
+    {"title": "booking", "icon": Icons.skip_previous_outlined},
     {"title": "about", "icon": Icons.person_2_outlined}
   ];
 

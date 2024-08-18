@@ -1,6 +1,8 @@
 import 'package:farm/test_view.dart';
+import 'package:farm/view/screen/FarmOwner/FarmOwnerHome.dart';
 import 'package:farm/view/screen/OnBoarding.dart';
 import 'package:farm/view/screen/admin/ConfirmFarm.dart';
+import 'package:farm/view/screen/auth/FarmSignUp.dart';
 
 import 'package:farm/view/screen/auth/signUp.dart';
 import 'package:farm/view/screen/auth/success_signup.dart';
@@ -25,7 +27,7 @@ List<GetPage<dynamic>>? routes = [
   MyMiddleWare()
    ]),
 
- // GetPage(name: "/", page: () =>   BookingScreen()) ,
+ // GetPage(name: "/", page: () =>   FarmOwnerHome()) ,
 
 
   GetPage(name: AppRoute.login, page: () => const Login()),
@@ -38,11 +40,11 @@ List<GetPage<dynamic>>? routes = [
 
   ////////////////////////////////////////////////
   GetPage(name: AppRoute.ServicesDetails, page: () => const ServicesDetails()),
-  GetPage(name: AppRoute.BookingServices, page: () => const BookingServices()),
-  GetPage(name: AppRoute.CancelBooking, page: () => const CancelBooking()),
+  GetPage(name: AppRoute.CancelBooking, page: () =>  CancelBooking()),
   GetPage(name: AppRoute.ConfirmFarm, page: () => const ConfirmFarm()),
   GetPage(name: AppRoute.BookingFarm, page: () =>  BookingFarm()),
-
+  GetPage(name: AppRoute.farm_signup, page: () =>  FarmSignUp()),
+  GetPage(name: AppRoute.farmOwnerHome, page: () =>  FarmOwnerHome()),
 
 
 ];

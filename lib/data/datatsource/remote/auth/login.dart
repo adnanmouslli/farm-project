@@ -21,5 +21,15 @@ class LogInData {
 
   }
 
+  postDataFarm(String email , String password) async {
+    var response = await crud.postData(AppLink.loginFarm, {
+      "email" :  email,
+      "password" : password ,
+    });
+    print(response) ;
+    return response.fold((l) => l, (r) => r) ;
+
+  }
+
 
 }

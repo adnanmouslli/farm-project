@@ -6,19 +6,14 @@ import '../../core/class/statusrequest.dart';
 import '../../core/functions/handingdatacontroller.dart';
 import '../../core/services/services.dart';
 
-
-
 class CancelBookingController extends GetxController {
-
   late StatusRequest statusRequest = StatusRequest.none;
 
-  BookingData bookingData = BookingData(Get.find()) ;
+  BookingData bookingData = BookingData(Get.find());
 
-  MyServices myServices = Get.find() ;
-  List availableBookings = [] ;
-  late int user_id ;
-
-
+  MyServices myServices = Get.find();
+  List availableBookings = [];
+  late int user_id;
 
   getData() async {
     statusRequest = StatusRequest.loading;
@@ -27,53 +22,46 @@ class CancelBookingController extends GetxController {
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
-        availableBookings.addAll(response['data']);
+        List bookings = response['data'];
+
+        // تصفية الحجوزات بحيث تبقى التي تاريخها بعد التاريخ الحالي فقط
+        availableBookings = bookings.where((booking) {
+          DateTime bookingDate = DateTime.parse(booking['date']);
+          return bookingDate.isAfter(DateTime.now());
+        }).toList();
+
       } else {
         statusRequest = StatusRequest.failure;
       }
     }
-    print(statusRequest) ;
+    print(statusRequest);
     update();
   }
 
-  deleteBooking(int index)
-  async {
+  deleteBooking(int index) async {
     SportBooking sportBooking = SportBooking.fromJson(availableBookings[index]);
 
-    var response = await bookingData.deleteData(sportBooking.idSer!, sportBooking.idU!) ;
+    var response = await bookingData.deleteData(sportBooking.idFarm!, sportBooking.idUser!, sportBooking.date!);
 
-    if(response['status'] == "success")
-      {
-        availableBookings.removeAt(index);
-        update();
-        Get.snackbar(
-          'الحجوزات',
-          'تم حذف الموعد بنجاح',
-          duration: Duration(seconds: 3), // Set the duration to 3 seconds
-          backgroundColor: Colors.green , // Set the background color to green
-          colorText: Colors.white, // Set the text color to white
-          shouldIconPulse: true, // Make the icon pulse
-          snackPosition: SnackPosition.BOTTOM, // Set the position to bottom
-        );
-      }
-
+    if (response['status'] == "success") {
+      availableBookings.removeAt(index);
+      update();
+      Get.snackbar(
+        'الحجوزات',
+        'تم حذف الموعد بنجاح',
+        duration: Duration(seconds: 3), // Set the duration to 3 seconds
+        backgroundColor: Colors.green, // Set the background color to green
+        colorText: Colors.white, // Set the text color to white
+        shouldIconPulse: true, // Make the icon pulse
+        snackPosition: SnackPosition.BOTTOM, // Set the position to bottom
+      );
+    }
   }
-
 
   @override
   void onInit() async {
-
     user_id = myServices.sharedPreferences.getInt("user_id")!;
-    await getData() ;
+    await getData();
     super.onInit();
-
-
   }
-
-
-
-
-
-
-
 }
