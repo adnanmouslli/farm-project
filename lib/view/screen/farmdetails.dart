@@ -20,7 +20,7 @@ class FarmDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     FarmDetailsControllerImp controllerImp = Get.put(FarmDetailsControllerImp());
 
-    const String baseUrl = AppLink.server;
+     String baseUrl = AppLink.server;
     return Scaffold(
       bottomNavigationBar: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

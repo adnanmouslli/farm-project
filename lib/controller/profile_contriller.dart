@@ -79,7 +79,7 @@ class profile_controllerImp extends profile_controller {
     email = myServices.sharedPreferences.getString("email") ;
     username = myServices.sharedPreferences.getString("username") ;
     user_id = myServices.sharedPreferences.getInt("user_id") ;
-    phone = myServices.sharedPreferences.getInt("phone") ;
+    phone = myServices.sharedPreferences.getString("phone") ;
 
     Inputemail = TextEditingController();
     InputNewemail = TextEditingController();

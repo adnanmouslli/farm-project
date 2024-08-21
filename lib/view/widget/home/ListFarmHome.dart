@@ -45,7 +45,7 @@ class Farms extends GetView<HomeControllerImp> {
   @override
   Widget build(BuildContext context) {
 
-    const String baseUrl = AppLink.server;
+     String baseUrl = AppLink.server;
 
     return InkWell(
       borderRadius: BorderRadius.circular(30),

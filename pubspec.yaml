@@ -77,6 +77,8 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   table_calendar:
   multi_image_picker_view:
+  flutter_multiselect:
+
 
   awesome_dialog: ^3.0.2
   multiple_stream_builder: ^3.0.0

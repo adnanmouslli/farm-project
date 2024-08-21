@@ -5,6 +5,7 @@ import '../../core/constant/routes.dart';
 import '../../core/functions/handingdatacontroller.dart';
 import '../../core/services/services.dart';
 import '../../data/datatsource/remote/auth/login.dart';
+import '../../linkapi.dart';
 
 class LoginControlerImp extends GetxController {
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
@@ -18,6 +19,14 @@ class LoginControlerImp extends GetxController {
   LogInData logInData = LogInData(Get.find());
 
   StatusRequest? statusRequest = StatusRequest.none;
+
+
+
+  void updateServerIp(String newIp) {
+    AppLink.server = "http://$newIp/farm";
+    update();
+    print(AppLink.server) ;
+  }
 
   // متغير لتخزين نوع الحساب المختار
   String selectedAccountType = 'User';
@@ -34,6 +43,7 @@ class LoginControlerImp extends GetxController {
   }
 
   login(BuildContext context) async {
+
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
       try {
@@ -41,7 +51,6 @@ class LoginControlerImp extends GetxController {
         update();
 
         if (selectedAccountType == 'User') {
-
 
           var response = await logInData.postData(email.text, password.text);
           print("=============================== Controller $response ");
@@ -51,7 +60,7 @@ class LoginControlerImp extends GetxController {
               myServices.sharedPreferences.setInt("user_id", response['data']['id']);
               myServices.sharedPreferences.setString("username", response['data']['username']);
               myServices.sharedPreferences.setString("email", response['data']['email']);
-              myServices.sharedPreferences.setInt("phone", response['data']['phone']);
+              myServices.sharedPreferences.setString("phone",response['data']['phone'] );
               myServices.sharedPreferences.setString("password", response['data']['password']);
               myServices.sharedPreferences.setString("isAdmin", response['data']['isAdmin']);
               myServices.sharedPreferences.setString("step", "2");

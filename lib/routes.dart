@@ -1,4 +1,5 @@
 import 'package:farm/test_view.dart';
+import 'package:farm/view/screen/FarmOwner/FarmImagesScreen.dart';
 import 'package:farm/view/screen/FarmOwner/FarmOwnerHome.dart';
 import 'package:farm/view/screen/OnBoarding.dart';
 import 'package:farm/view/screen/admin/ConfirmFarm.dart';
@@ -23,7 +24,7 @@ import 'view/screen/auth/login.dart';
 
 List<GetPage<dynamic>>? routes = [
 
-   GetPage(name: "/", page: () => const OnBoarding() , middlewares: [
+   GetPage(name: "/", page: () => const Login() , middlewares: [
   MyMiddleWare()
    ]),
 
@@ -45,6 +46,8 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.BookingFarm, page: () =>  BookingFarm()),
   GetPage(name: AppRoute.farm_signup, page: () =>  FarmSignUp()),
   GetPage(name: AppRoute.farmOwnerHome, page: () =>  FarmOwnerHome()),
+  GetPage(name: AppRoute.farmImage, page: () =>  FarmImagesScreen()),
+
 
 
 ];

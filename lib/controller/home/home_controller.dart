@@ -47,10 +47,8 @@ class HomeControllerImp extends HomeController {
   @override
   initialData() {
 
-
   String? state = myServices.sharedPreferences.getString("isAdmin");
   if(state == "1") isAdmin =true ;
-
 
   }
 

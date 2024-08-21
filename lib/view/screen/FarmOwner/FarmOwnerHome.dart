@@ -1,11 +1,13 @@
-import 'package:farm/core/constant/imagasset.dart';
+import 'package:farm/core/constant/routes.dart';
 import 'package:farm/linkapi.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../../controller/FarmOwner/FarmOwnerHomeController.dart';
-import '../../../core/constant/color.dart'; // لاستيراد Lottie
+import '../../../core/constant/color.dart';
+import 'BookingListScreen.dart';
+import 'AddOfferScreen.dart';
+import 'FarmOffersScreen.dart'; // استيراد شاشة إضافة العرض
 
 class FarmOwnerHome extends StatelessWidget {
   const FarmOwnerHome({Key? key}) : super(key: key);
@@ -38,7 +40,7 @@ class FarmOwnerHome extends StatelessWidget {
       ),
     ];
 
-    String ip = AppLink.server ;
+    String ip = AppLink.server;
 
     return Scaffold(
       appBar: AppBar(
@@ -49,9 +51,7 @@ class FarmOwnerHome extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // صندوق معلومات المزرعة
             GetBuilder<FarmOwnerHomeController>(builder: (controller) {
-
               return Container(
                 margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
                 decoration: BoxDecoration(
@@ -73,7 +73,7 @@ class FarmOwnerHome extends StatelessWidget {
                     ),
                   ],
                 ),
-                child:  Stack(
+                child: Stack(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(13.0),
@@ -86,7 +86,8 @@ class FarmOwnerHome extends StatelessWidget {
                               // صورة المزرعة كـ Avatar
                               CircleAvatar(
                                 radius: 50,
-                                backgroundImage: NetworkImage("$ip/upload/${controller.farm['urlImage']}"), // استبدلها بمسار صورة صاحب المزرعة
+                                backgroundImage: NetworkImage(
+                                    "$ip/upload/${controller.farm['urlImage']}"), // استبدلها بمسار صورة صاحب المزرعة
                               ),
                               const SizedBox(width: 15),
                               Expanded(
@@ -125,7 +126,6 @@ class FarmOwnerHome extends StatelessWidget {
               );
             }),
             const SizedBox(height: 20),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: GridView.builder(
@@ -138,6 +138,127 @@ class FarmOwnerHome extends StatelessWidget {
                   mainAxisSpacing: 10,
                 ),
                 itemBuilder: (context, index) {
+                  if (index == 0) {
+                    // بوكس عرض صور المزرعة
+                    return Container(
+                      decoration: BoxDecoration(
+                        gradient: gradients[index % gradients.length],
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: InkWell(
+                        onTap: () async {
+                          Get.toNamed(AppRoute.farmImage);
+                        },
+                        child: const Center(
+                          child: Text(
+                            "Farm Images",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  } else if (index == 1) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        gradient: gradients[index % gradients.length],
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(() => BookingListScreen());
+                        },
+                        child: const Center(
+                          child: Text(
+                            "Farm Bookings",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  } else if (index == 2) {
+                    // بوكس إضافة عرض
+                    return Container(
+                      decoration: BoxDecoration(
+                        gradient: gradients[index % gradients.length],
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(() => AddOfferScreen()); // الانتقال إلى شاشة إضافة العرض
+                        },
+                        child: const Center(
+                          child: Text(
+                            "Add Offer",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                  else if(index == 3){
+                    return Container(
+                      decoration: BoxDecoration(
+                        gradient: gradients[index % gradients.length],
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(() => const FarmOffersScreen());
+                        },
+                        child: const Center(
+                          child: Text(
+                            "View Offers",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+
                   return Container(
                     decoration: BoxDecoration(
                       gradient: gradients[index % gradients.length],
@@ -151,9 +272,7 @@ class FarmOwnerHome extends StatelessWidget {
                       ],
                     ),
                     child: InkWell(
-                      onTap: () {
-
-                      },
+                      onTap: () {},
                       child: Center(
                         child: Text(
                           "Task ${index + 1}",

@@ -1,19 +1,16 @@
-import 'package:farm/core/class/statusrequest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import '../../../controller/auth/login_controler.dart';
 import '../../../core/class/handlingdataview.dart';
-import '../../../core/constant/color.dart';
-import '../../../core/functions/alertexitapp.dart';
+import '../../../core/class/statusrequest.dart';
 import '../../../core/functions/validinput.dart';
-import '../../widget/auth/CustonTextFormAuth.dart';
-import '../../widget/auth/customLottie.dart';
-import '../../widget/auth/customTextSignup.dart';
 import '../../widget/auth/custombuttonauth.dart';
+import '../../widget/auth/CustonTextFormAuth.dart';
 import '../../widget/auth/customtextbodyauth.dart';
 import '../../widget/auth/customtexttitleauth.dart';
 import '../../widget/auth/logoauth.dart';
+import '../ChangeIpScreen.dart';
+import '../../../core/constant/color.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -40,18 +37,21 @@ class Login extends StatelessWidget {
       ),
       body: GetBuilder<LoginControlerImp>(
         builder: (controller) => !controller.isInternet
-            ? const CustomLottie()
+            ? const CircularProgressIndicator()
             : WillPopScope(
           onWillPop: () async {
-            return alertExitApp();
+            return true;
           },
           child: HandlingDataRequest(
             statusRequest: controller.statusRequest!,
             widget: Container(
+              padding: const EdgeInsets.all(16.0),
               child: Form(
                 key: controller.formstate,
                 child: ListView(
                   children: [
+
+
                     SizedBox(height: 20),
                     LogoAuth(),
                     SizedBox(height: 20),
@@ -118,23 +118,74 @@ class Login extends StatelessWidget {
                     CustomButtomAuth(
                       text: "Log in",
                       onPressed: () {
-                       controller.login(context);
-                      },
-                    ),
-                    // زر تسجيل كمزرعة
-                    CustomButtomAuth(
-                      text: "Create a Farm Account",
-                      onPressed: () {
-                        Get.offNamed("/farm_signup");
-                      },
-                    ),
-                    CustomButtomAuth(
-                      text: "Create a User Account",
-                      onPressed: () {
-                        controller.goToSignUp();
+                        controller.login(context);
                       },
                     ),
                     SizedBox(height: 15),
+                    // زر إنشاء حساب كمزرعة
+                    OutlinedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.white),
+                        side: MaterialStateProperty.all(BorderSide(color: AppColor.primaryColor)),
+                        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 16.0)),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        Get.offNamed("/farm_signup");
+                      },
+                      child: Text(
+                        "Create a Farm Account",
+                        style: TextStyle(color: AppColor.primaryColor),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    // زر إنشاء حساب مستخدم
+                    OutlinedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.white),
+                        side: MaterialStateProperty.all(BorderSide(color: AppColor.primaryColor)),
+                        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 16.0)),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        controller.goToSignUp();
+                      },
+                      child: Text(
+                        "Create a User Account",
+                        style: TextStyle(color: AppColor.primaryColor),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    // زر تغيير IP
+                    OutlinedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.white),
+                        side: MaterialStateProperty.all(BorderSide(color: AppColor.primaryColor)),
+                        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 16.0)),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        Get.to(() => ChangeIpScreen());
+                      },
+                      child: Text(
+                        "Change Server IP",
+                        style: TextStyle(color: AppColor.primaryColor),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+
                   ],
                 ),
               ),

@@ -21,7 +21,7 @@ class ConfirmFarmController extends GetxController {
   late int user_id ;
   late String username ;
   late String email ;
-  late int phone ;
+  late String phone ;
 
   getData() async {
     statusRequest = StatusRequest.loading;
@@ -89,7 +89,7 @@ class ConfirmFarmController extends GetxController {
     user_id = myServices.sharedPreferences.getInt("user_id")!;
     username = myServices.sharedPreferences.getString("username")!;
     email = myServices.sharedPreferences.getString("email")!;
-    phone = myServices.sharedPreferences.getInt("phone")!;
+    phone = myServices.sharedPreferences.getString("phone")!;
 
 
     await getData() ;
